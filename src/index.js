@@ -3,6 +3,7 @@ import './css/master.styl'
 import Asteroid from './js/Asteroid';
 import * as THREE from 'three'
 import {MTLLoader, OBJLoader} from 'three-obj-mtl-loader'
+
 const mtlLoader = new MTLLoader()
 const objLoader = new OBJLoader()
 const textureLoader = new THREE.TextureLoader()
@@ -17,16 +18,9 @@ let controlsListeners = {
     s : 0
 }
 
+let lifeStatus= 100
 
-// Call the Asteroids
-for(let i = 0; i < 500; i++){
-    const Asteroids = new Asteroid({
-        mtlLoader : mtlLoader,
-        objectLoader : objLoader,
-        textureLoader : textureLoader
-    })
-    scene.add(Asteroids.container)
-}
+
 
 //Set the Skybox
 const skyBox = {}
@@ -170,6 +164,18 @@ window.addEventListener('keydown', (_e) =>
     } 
 })
 
+// Call the Asteroids
+const Asteroids = new Asteroid({
+    mtlLoader : mtlLoader,
+    objectLoader : objLoader,
+    textureLoader : textureLoader,
+    camera : camera,
+    lifeStatus : lifeStatus,
+    scene : scene,
+    lifeStatus : lifeStatus
+})
+
+
 
 // Loop, all the good stuff's here
 const loop = () =>
@@ -187,15 +193,15 @@ const loop = () =>
     if(controlsListeners.shift === 1 && controlsListeners.z === 1)//Increase speed to 108
     {
         velocity += 0.40
-        if (velocity > 65)
+        if (velocity > 40)
         {
-            velocity = 65          
+            velocity = 40          
         }
     }
 
     if(controlsListeners.s === 1)//Decrease to 
     {
-        velocity -= 0.46
+        velocity -= 0.50
         if (velocity < -4)
         {
             velocity = -4
@@ -203,7 +209,7 @@ const loop = () =>
     }
 
     if(velocity < 0 && controlsListeners.z === 0 && controlsListeners.shift === 0 && controlsListeners.s ===0){
-        velocity += 0.18
+        velocity += 0.50
     }
 
     // Update Skybox
@@ -214,8 +220,8 @@ const loop = () =>
     // Update camera
         //Position 
     camera.setFocalLength (15 - (velocity/10))
-    camera.position.x += cursor.x * 0.8
-    camera.position.y += - cursor.y * 0.8
+    camera.position.x += cursor.x * 1.2
+    camera.position.y += - cursor.y * 1.2
     camera.position.z -= velocity * 0.08
 
         //Position container
