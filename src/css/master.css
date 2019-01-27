@@ -1,0 +1,204 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+    
+
+html body
+{
+    font-family: 'Major Mono Display', monospace;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+canvas
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.controls
+{
+    font-size: 2em;
+    position: absolute;
+    z-index: 500000;
+    color: white;
+    width: 100%;
+    height: 100%;
+}
+
+
+.firstScreen{
+    width: 100%;
+    height: 100%;
+    /* display: block;  */
+    /* transform: translateY(0%); */
+    transition: 0.75s ease all;
+}
+
+.firstScreen.inactive
+{ 
+    /* display: block;  */
+    transform: translateY(100%);
+    transition: 0.75s ease all;
+}
+
+
+
+.controls ul
+{
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    transform: translateX(-50%);
+}
+
+.begin
+{
+    position: absolute;
+    width: 200px;
+    padding: 20px;
+    border: 1px white solid;
+    z-index: 5000000;
+    left: 50%;
+    top: 40%;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    transform: translateX(-50%);
+}
+
+.console
+{
+    position: absolute;
+    bottom: 6%;
+    left: 6%;
+    z-index: 5455454;
+    opacity: 0.2;
+}
+
+.console h2
+{
+    color: white;
+}
+
+.console .lifeStatus
+{
+    margin-top: 10px;
+    border-radius: 100000px;
+    height: 12px;
+    width: 100px;
+    background: white;
+    transition: 0.25s ease-in-out all;
+}
+
+.looseScreen
+{
+    display: none;
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 999999999999999999999999;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+
+.looseScreen .container
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.looseScreen h2
+{
+    color: white;
+}
+
+.looseScreen .retry
+{
+    position: relative;
+    text-decoration: none;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px;
+    color: white;
+}
+.string
+{
+    height: 1px;
+    width: 0px;
+    background: white;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transition: 0.75s cubic-bezier(0.75, 0, 0.25, 1);
+}
+
+.looseScreen .retry:hover .string
+{
+    width: 166px;
+    transform: translateX(10%);
+}
+
+.winScreen
+{
+    display: none;
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 999999999999999999999;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+
+.winScreen .container
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.winScreen h2
+{
+    color: white;
+}
+
+.winScreen .retry
+{
+    position: relative;
+    text-decoration: none;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px;
+    color: white;
+}
+.string
+{
+    height: 1px;
+    width: 0px;
+    background: white;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transition: 0.75s cubic-bezier(0.75, 0, 0.25, 1);
+}
+
+.winScreen .retry:hover .string
+{
+    width: 166px;
+    transform: translateX(10%);
+}

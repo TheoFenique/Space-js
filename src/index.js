@@ -1,4 +1,4 @@
-import './css/master.styl'
+import './css/master.css'
 
 import Asteroid from './js/Asteroid';
 import * as THREE from 'three'
@@ -8,6 +8,24 @@ const mtlLoader = new MTLLoader()
 const objLoader = new OBJLoader()
 const textureLoader = new THREE.TextureLoader()
 const scene = new THREE.Scene()
+const beginButton = document.querySelector('.begin-js')
+const firstScreen = document.querySelector('.firstScreen')
+
+
+//Front functions
+beginButton.addEventListener('click', (_e) =>
+{
+    _e.preventDefault()
+    firstScreen.classList.add('inactive')
+})
+
+
+
+
+
+
+
+
 
 //Variables
 let velocity = 0
@@ -153,16 +171,6 @@ window.addEventListener('keydown', (_e) =>
     } 
 })
 
-window.addEventListener('keydown', (_e) =>
-{
-    //Press S to decrease velocity
-    if(_e.key == 'r')
-    {
-        camera.position.z = 0
-        camera.position.x = 0
-        camera.position.y = 0
-    } 
-})
 
 // Call the Asteroids
 const Asteroids = new Asteroid({
@@ -172,7 +180,8 @@ const Asteroids = new Asteroid({
     camera : camera,
     lifeStatus : lifeStatus,
     scene : scene,
-    lifeStatus : lifeStatus
+    lifeStatus : lifeStatus,
+    velocity : velocity
 })
 
 

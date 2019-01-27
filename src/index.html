@@ -4,9 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display" rel="stylesheet">
     <title>Asteroids</title>
 </head>
 <body>
-    
+    <div class="firstScreen">
+        <div class="controls">
+                <ul>
+                    <li>Z : Avancer</li>
+                    <li>Shift + Z : Boost</li>
+                    <li>S : Freiner / Reculer</li>
+                    <li>Orientation : Curseur</li>
+                </ul>
+            </div>
+        <a href="#" class="begin-js begin">CLICKEZ ICI POUR MASQUER LE TUTORIEL</a>
+    </div>
+    <div class="console">
+        <h2>Etat</h2>
+        <div class="lifeStatus"></div>
+    </div>
+    <div class="looseScreen">
+        <div class="container">
+            <h2>Vous n'êtes pas arrivé au boût.</h2>
+            <a href="#" class="retry retry-js">réessayer ?<span class="string"></span></a>
+        </div>
+    </div>
+    <div class="winScreen">
+            <div class="container">
+                <h2>Vous êtes arrivé au boût de la simulation de vol.</h2>
+                <a href="#" class="retry winLink-js">réessayer ?<span class="string"></span></a>
+            </div>
+        </div>
 </body>
 </html>

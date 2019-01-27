@@ -1,4 +1,10 @@
 import * as THREE from 'three'
+const lifeBar = document.querySelector('.lifeStatus')
+const looseScreen = document.querySelector('.looseScreen')
+const looseLink = document.querySelector('.retry-js')
+const winScreen = document.querySelector('.winScreen')
+const winLink = document.querySelector('.winLink-js')
+console.log(lifeBar)
 
 export default class Asteroid
 {
@@ -10,18 +16,20 @@ export default class Asteroid
         this.camera = _options.camera
         this.scene = _options.scene
         this.lifeStatus = _options.lifeStatus
+        this.velocity = _options.velocity
         this.container = new THREE.Object3D()
         this.thisObject = {}
         this.setObject()
         this.setDust()
         this.checkCollisions()
         this.lifeBarStatus()
+        this.didHeWin()
     }
 
     setObject()
     {
         this.objTab = []
-        for(let i =0; i < 4; i++){
+        for(let i =0; i < 450; i++){
             this.mtlLoader.load('/objects/asteroid.mtl', (materials) => //besoin de mettre tout les objets dans un tebleau pour y acceder
             {
                 materials.preload()
@@ -53,7 +61,6 @@ export default class Asteroid
                         window.requestAnimationFrame(loop)
                         this.objTab[i].rotation.x += this.rotationXRatio * 0.005
                         this.objTab[i].rotation.z += this.rotationZRatio * 0.005
-                        this.objTab[i].position.z += 0.03
                         this.asteroidCollision(this.objTab[i])
                     }
                     loop()
@@ -132,7 +139,21 @@ export default class Asteroid
     reduceLife(malus)
     {
         this.lifeStatus -= malus
-        // console.log(this.lifeStatus)
+        console.log(this.lifeStatus)
+        if(this.lifeStatus <= 0)
+        {
+            looseScreen.style.display = "block"
+        }
+        looseLink.addEventListener('click', (_e) =>
+        {
+            _e.preventDefault()
+            this.camera.position.x = 0
+            this.camera.position.y = 0
+            this.camera.position.z = 0
+            this.velocity = 0
+            looseScreen.style.display = 'none'
+            this.lifeStatus = 100
+        })  
     }
     
     lifeBarStatus()
@@ -140,9 +161,33 @@ export default class Asteroid
         const loop = () =>
         {
             window.requestAnimationFrame(loop)
-            return(this.lifeStatus)
+            lifeBar.style.width = this.lifeStatus + "px"
         }
         loop()
 
+    }
+
+    didHeWin()
+    {
+        winLink.addEventListener('click', (_e)=>
+        {
+            _e.preventDefault()
+            this.camera.position.x = 0
+            this.camera.position.y = 0
+            this.camera.position.z = 0
+            this.velocity = 0
+            winScreen.style.display = 'none'
+            this.lifeStatus = 100
+        })
+        
+        const loop = () =>
+        {
+            window.requestAnimationFrame(loop)
+            if(this.camera.position.z < -1990)
+            {
+                winScreen.style.display = "block"
+            }
+        }
+        loop()
     }
 }
